@@ -11,7 +11,7 @@
                 let network = await provider.getNetwork();
                 let height = await provider.getBlockNumber();
                 if(network.name != "ropsten"){
-                    alert("You are not connected to the ropsten network! Please change your current network in MetaMask and reload the page :)");
+                    alert("You are not connected to the ropsten network! Please change your current network in MetaMask :)");
                     //Error handling -> for this example is no error-handling necassery because .getBlockNumber() and .getNetwork() do not waste any ETH
                     document.getElementById("blockHeight").innerHTML = height;
                     document.getElementById("network").style.color="#FF0000";

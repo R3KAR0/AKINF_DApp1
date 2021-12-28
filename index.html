@@ -1,0 +1,42 @@
+<HTML>
+    <head>
+
+    </head>
+    <body>
+        <script type="module">
+            import { ethers } from "./ethers.js";
+            
+            async function button_clicked(){
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                let network = await provider.getNetwork();
+                let height = await provider.getBlockNumber();
+                if(network.name != "ropsten"){
+                    alert("You are not connected to the ropsten network! Please change your current network in MetaMask and reload the page :)");
+                    //Error handling -> for this example is no error-handling necassery because .getBlockNumber() and .getNetwork() do not waste any ETH
+                    document.getElementById("blockHeight").innerHTML = height;
+                    document.getElementById("network").style.color="#FF0000";
+                    document.getElementById("network").innerHTML = network.name;
+                }
+                else{
+                    document.getElementById("blockHeight").innerHTML = height;
+                    document.getElementById("network").innerHTML = network.name;
+                }
+            }
+
+            let btn = document.getElementById("button");
+            btn.addEventListener("click", button_clicked);
+        </script>
+
+    <button id="button">Load blockheight</button>
+    <div>
+        <h1>Current Blockheight:</h1>
+        <h2 id="blockHeight"></h2>
+    </div>
+
+    <div>
+        <h1>Current Network:</h1>
+        <h2 id="network"></h2>
+    </div>
+
+    </body>
+</HTML>
